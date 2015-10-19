@@ -1,0 +1,22 @@
+<h1>New contact</h1>
+
+<% if !@errors.nil? && @errors.any? %>
+<h3>Please fix these errors:</h3>
+<ul>
+  <%= render('fullMessage') %>
+</ul>
+<% end %>
+
+<form action="/contacts" method="post">
+  <label for="contact_name">Name</label>
+  <input id="contact_name" name="name" type="text" value="<%= @contact.name %>">
+  <label for="contact_phone">Phone</label>
+  <% if @contact.phones.empty? %>
+    <input id="contact_phone" name="number" type="text" value="">
+  <% else %>
+    <input id="contact_phone" name="number" type="text" value="<%= @contact.phones[0].number %>">
+  <% end %>
+  <label for="contact_email">Email</label>
+  <input id="contact_email" name="email" type="text" value="<%= @contact.email %>">
+  <button>Create Contact</button>
+</form>

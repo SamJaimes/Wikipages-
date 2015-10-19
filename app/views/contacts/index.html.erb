@@ -1,0 +1,27 @@
+<h1>Contacts</h1>
+
+<ul>
+  <% @contacts.each do |contact| %>
+  <li><a href="/contacts/<%= contact.id %>"><%= contact.name %></a></li>
+  <% end %>
+</ul>
+
+<h2>New contact</h2>
+
+<% if @contact.errors.any? %>
+<h3>Please fix these errors:</h3>
+<ul>
+  <%= render('fullMessage') %>
+</ul>
+<% end %>
+
+<form action="/contacts" method="post">
+  <!-- <input name="_method" type="hidden"> -->
+  <label for="contact_name">Name</label>
+  <input id="contact_name" name="contact[name]" type="text" value="<%= @contact.name %>">
+  <label for="contact_phone">Phone</label>
+  <input id="contact_phone" name="number" type="text" value="">
+  <label for="contact_email">Email</label>
+  <input id="contact_email" name="contact[email]" type="text" value="<%= @contact.email %>">
+  <button>Create Contact</button>
+</form>
